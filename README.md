@@ -6,7 +6,7 @@ Open Scene GameOfLife.unity
   
 ->Calibrate your board using gameManager script on GameObject --Manager--
 
-  -Set the mo of rows and cols
+  -Set the no of rows and cols
   
   -Set time between each tick(generation)
   
