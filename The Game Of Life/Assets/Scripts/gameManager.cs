@@ -11,6 +11,9 @@ public class gameManager : MonoBehaviour
     [SerializeField]
     GameObject cellPrefab, panel;
 
+    [SerializeField]
+    Text stateText;
+
     [Header("Input no:")]
     [SerializeField]
     int row = 6;
@@ -25,12 +28,12 @@ public class gameManager : MonoBehaviour
 
     GridLayoutGroup layout;
 
-    [Header("% chance for cell to start alive")]
+    [Header("% Random to be alive")]
     [SerializeField]
     [Range(0f,100f)]
-    float startingFrequency=50f;
+    float randomizeFrequency=50f;
 
-    bool isPaused;
+    bool isPaused=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +64,6 @@ public class gameManager : MonoBehaviour
                 temp.transform.SetParent(panel.transform);
                 temp.transform.localScale = Vector3.one;
                 cells[i][j] = temp.GetComponent<cellManager>();
-                cells[i][j].willBeAlive(startingFrequency/100f);
             }
         }
 
@@ -117,7 +119,35 @@ public class gameManager : MonoBehaviour
         //Pause/Play
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            isPaused = !isPaused;
+            toggleState();
+        }
+    }
+
+    public void nextGeneration()
+    {
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                cells[i][j].tick();
+            }
+        }
+    }
+
+    public void toggleState()
+    {
+        isPaused = !isPaused;
+        stateText.text = isPaused ? "Paused" : "Play";
+    }
+
+    public void randomizeGrid()
+    {
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                cells[i][j].willBeAlive(randomizeFrequency / 100f);
+            }
         }
     }
 
