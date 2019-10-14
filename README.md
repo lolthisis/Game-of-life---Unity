@@ -6,16 +6,15 @@ Made with Unity 2018.4.0f1
 Open Scene GameOfLife.unity
   
 ->Calibrate your board using gameManager script on GameObject --Manager--
-
   -Set the no of rows and cols
-  
   -Set time between each tick(generation)
-  
   -Adjust Percentage of cell starting alive
   
 ->Press Play
-
-->Press Space to Pause/Play in runtime
+  ->Press on any cell to toggle it's state.
+  ->Press randomize to generate random grid.
+  ->Press Next Generation for going through generation stepwise.
+  ->Press Space or Button on left to Pause/Play in runtime.
 ```
 ## Conway's game of life:
 
